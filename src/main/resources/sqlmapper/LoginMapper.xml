@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hengtiansoft.nl.dao.mybatis.LoginMapper">
+	<select id="getStudent" parameterType="com.hengtiansoft.nl.model.Student"
+		resultType="com.hengtiansoft.nl.model.Student">
+		SELECT
+		s.name,s.num,s.class,s.age,s.math
+		FROM student s WHERE s.name=#{name,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

@@ -14,6 +14,9 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
+	<!-- 自动扫描(自动注入)Service -->
+	<context:component-scan base-package="com.hengtiansoft.nl.service" />
+	
 	<!-- 默认的注解映射的支持，org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->
 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
 		<mvc:message-converters register-defaults="true">
@@ -89,9 +92,7 @@
 	<!-- 拦截器配置 -->
 	<!-- <mvc:interceptors>
 	<bean class="com.hengtiansoft.dj.modules.sys.interceptor.LogInterceptor" />
-    </mvc:interceptors> -->
-	
-	
+    </mvc:interceptors> -->	
 	
 	
 	
