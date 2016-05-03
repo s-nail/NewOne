@@ -1,6 +1,5 @@
 package com.hengtiansoft.nl.service.impl;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,14 +14,12 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginMapper loginMapper;
 
-	@Override
-	public List<Student> login(Student student) {
-		boolean flag = false;
-		List<Student> list = loginMapper.getStudent(student);
-		if (list.size() != 0) {
-			flag = true;
-		}
-		return list;
+	
+	public Student login(Student student) {
+		
+		Student studentResult = loginMapper.getStudent(student);
+		
+		return studentResult;
 	}
 
 }

@@ -180,6 +180,12 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis.spring.version}</version>
 		</dependency>
+		<!-- mybatis generator core -->
+		<dependency>
+			<groupId>mybatis</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.2</version>
+		</dependency>
 
 		<!-- spring data -->
 		<dependency>
@@ -207,6 +213,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- hibernate validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.1.3.Final</version>
+		</dependency>
+
 		<!-- db -->
 		<dependency>
 			<groupId>cglib</groupId>

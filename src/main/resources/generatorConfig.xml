@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 引入配置文件 -->
+	<properties resource="nl.properties" />
+	<!-- 指定数据连接驱动jar地址 -->
+	<classPathEntry
+		location="${db.location}" />
+	<context id="NewOne" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /><!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+		
+		 <!-- jdbc连接 -->  
+		<jdbcConnection driverClass="${db.driver}"
+			connectionURL="${db.url}" userId="${db.user}" password="${db.password}" />
+		<!-- 生成实体类地址 -->   
+		<javaModelGenerator targetPackage="com.hengtiansoft.nl.model"
+			targetProject="E:\Java-Code\NewOne\src\main\java\com\hengtiansoft\nl\model" />
+			
+		<sqlMapGenerator targetPackage="\NewOne\src\main\resources\sqlmapper" targetProject="E:\Java-Code\NewOne\src\main\resources\sqlmapper" />
+		
+		<javaClientGenerator targetPackage="com.hengtiansoft.nl.dao"
+			targetProject="E:\Java-Code\NewOne\src\main\java\com\hengtiansoft\nl\dao" type="XMLMAPPER" />
+		<table schema="student" tableName="act_ge_bytearray">
+			<columnOverride column="REV_" jdbcType="VARCHAR" />
+		</table>
+	</context>
+</generatorConfiguration>

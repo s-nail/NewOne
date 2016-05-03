@@ -2,6 +2,8 @@ package com.hengtiansoft.nl.model;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Student implements Serializable{
 	
 	
@@ -25,6 +27,7 @@ public class Student implements Serializable{
 	public void setId(String id) {
 		this.id = id;
 	}
+	@NotBlank(message="用户名不能为空！")
 	public String getName() {
 		return name;
 	}
@@ -49,6 +52,7 @@ public class Student implements Serializable{
 	public void setAge(String age) {
 		this.age = age;
 	}
+	@NotBlank(message="密码不能为空！")
 	public String getPassword() {
 		return password;
 	}

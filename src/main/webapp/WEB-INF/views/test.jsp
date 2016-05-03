@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h2>首页设置成功！</h2>
+TEST WEB-INF VIEWS
 </body>
 </html>
