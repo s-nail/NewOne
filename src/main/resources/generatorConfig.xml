@@ -4,27 +4,82 @@
 	<!-- 引入配置文件 -->
 	<properties resource="nl.properties" />
 	<!-- 指定数据连接驱动jar地址 -->
-	<classPathEntry
-		location="${db.location}" />
+	<classPathEntry location="${db.location}" />
 	<context id="NewOne" targetRuntime="MyBatis3">
 		<commentGenerator>
 			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
 			<property name="suppressDate" value="true" /><!-- 是否生成注释代时间戳 -->
 		</commentGenerator>
-		
-		 <!-- jdbc连接 -->  
+
+		<!-- jdbc连接 -->
 		<jdbcConnection driverClass="${db.driver}"
 			connectionURL="${db.url}" userId="${db.user}" password="${db.password}" />
-		<!-- 生成实体类地址 -->   
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成实体类地址(包名和位置) -->
 		<javaModelGenerator targetPackage="com.hengtiansoft.nl.model"
-			targetProject="E:\Java-Code\NewOne\src\main\java\com\hengtiansoft\nl\model" />
-			
-		<sqlMapGenerator targetPackage="\NewOne\src\main\resources\sqlmapper" targetProject="E:\Java-Code\NewOne\src\main\resources\sqlmapper" />
-		
+			targetProject="NewOne\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="com.hengtiansoft.nl.mapper"
+			targetProject="NewOne\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 生成DAO的包名和位置 -->
 		<javaClientGenerator targetPackage="com.hengtiansoft.nl.dao"
-			targetProject="E:\Java-Code\NewOne\src\main\java\com\hengtiansoft\nl\dao" type="XMLMAPPER" />
-		<table schema="student" tableName="act_ge_bytearray">
-			<columnOverride column="REV_" jdbcType="VARCHAR" />
+			targetProject="NewOne\src\main\java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<!-- 要生成哪些表 -->
+		<!-- schema="student" 数据库名可有可无 -->
+		<table schema="student" tableName="user" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="question" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="score" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 	</context>
 </generatorConfiguration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
