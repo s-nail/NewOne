@@ -136,18 +136,22 @@ public class LoginController {
 		return "error/404";
 	}
 
+	/*
+	 * 测试com.github.pagehelper.PageHelper的使用
+	 */
 	@RequestMapping(value = "/getStudentList", method = RequestMethod.POST)
 	@ResponseBody
 	public Object getStudnetList(@RequestBody StudentParam studentParam) {
 
-		PageInfo<StudentResult> studentList=loginService.getStudentList(studentParam);
-		Map<String, Object> map=new HashMap<String, Object>();
+		PageInfo<StudentResult> studentList = loginService
+				.getStudentList(studentParam);
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("totalCount", studentList.getTotal());
 		map.put("studentList", studentList.getList());
-		
+
 		Head head = new Head();
 		head.data = map;
-		
+
 		return new MobileReturn<Head>(head);
 	}
 
