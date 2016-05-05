@@ -70,9 +70,17 @@
 			/> -->
 		<!--<property name="typeHandlersPackage" value="com.hengtiansoft.sc.coreapp.showcase.dao.mybatis.typehandler" 
 			/> -->
-		<!-- <property name="plugins"> <array> <bean class="com.github.pagehelper.PageHelper"> 
-			<property name="properties"> <value> dialect=mysql </value> </property> </bean> 
-			</array> </property> -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
 	</bean>
 
 	<!-- scan for mappers and let them be autowired -->
@@ -90,8 +98,9 @@
 	<!-- 配置 Annotation 驱动，扫描@Transactional注解的类定义事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager"
 		proxy-target-class="true" />
-		
+
 	<!-- 自动扫描(自动注入) -->
-	<!-- <context:component-scan base-package="com.hengtiansoft.nl.service" /> -->
+	<!-- <context:component-scan base-package="com.hengtiansoft.nl.service" 
+		/> -->
 
 </beans>
