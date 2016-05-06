@@ -28,6 +28,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
 			System.out.println("免过滤Path---->" + lastPath);
 			//return true;
 		} else {
+			//如果路径是需要过滤的，则先判断session中是否存在；如果session中已存在用户信息，则放行：return true，否则跳转error页面
 			Student student = WebUserUtil.getWebUser(request);
 			if (student.getName() != null) {
 				System.out.println("拦截器,session不为空，用户已登录！   StudentName:"+student.getName());
