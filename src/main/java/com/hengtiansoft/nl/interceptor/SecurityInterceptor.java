@@ -9,42 +9,46 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hengtiansoft.nl.model.Student;
 import com.hengtiansoft.nl.util.ResourceUtil;
+import com.hengtiansoft.nl.util.WebUserUtil;
 
 public class SecurityInterceptor implements HandlerInterceptor {
 	private List<String> excludePaths;
 
-	
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("SecurityInterceptor preHandle");
+		System.out.println("===============登录拦截器  preHandle================");
 
 		String requestPath = ResourceUtil.getRequestPath(request);
 		String lastPath = requestPath
 				.substring(requestPath.lastIndexOf("/") + 1);
-		System.out.println(lastPath);
+		System.out.println("拦截路径===="+lastPath);
 		if (isExcludePath(lastPath)) {
-			System.out.println("进来了" + lastPath);
-			return true;
-		}else {
-			sendRedirectToError(request, response);
+			System.out.println("免过滤Path---->" + lastPath);
+			//return true;
+		} else {
+			Student student = WebUserUtil.getWebUser(request);
+			if (student.getName() != null) {
+				System.out.println("拦截器,session不为空，用户已登录！   StudentName:"+student.getName());
+				//return sendRedirectToIndex(request, response);
+			} else {
+				System.out.println("拦截器,session为空，用户未登录！    StudentName:"+student.getName());
+				return sendRedirectToError(request, response);
+			}
 		}
-		return false;
+		return true;
 	}
 
-	
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
 
 	}
 
-	
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -57,9 +61,16 @@ public class SecurityInterceptor implements HandlerInterceptor {
 
 	private boolean sendRedirectToError(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-		StringBuffer sb=new StringBuffer(request.getContextPath());		
+		StringBuffer sb = new StringBuffer(request.getContextPath());
 		sb.append("/web/errorPermission");
-		response.sendRedirect(sb.toString());		
+		response.sendRedirect(sb.toString());
+		return false;
+	}
+	private boolean sendRedirectToIndex(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		StringBuffer sb = new StringBuffer(request.getContextPath());
+		sb.append("/web/index");
+		response.sendRedirect(sb.toString());
 		return false;
 	}
 

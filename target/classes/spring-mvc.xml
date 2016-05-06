@@ -86,7 +86,7 @@
 					<list>
 						<value>login</value>
 						<value>logout</value>
-						<value>getStudentList</value>
+						<!-- <value>getStudentList</value> -->
 						<value>register</value>
 						<value>error</value>
 						<value>test</value>

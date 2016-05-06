@@ -44,11 +44,10 @@ public class LoginController {
 	 */
 	public MobileReturn<Head> login(HttpServletRequest request,
 			@RequestBody @Validated Student student, BindingResult result) {
-		String username = request.getParameter("name");
-		String password = request.getParameter("password");
-		System.out.println("name:" + username + "  password:" + password);
+	
 
-		System.out.println("name:" + student.getName() + "  password:"
+		//name和password为空验证
+		System.out.println("验证====name:" + student.getName() + "  password:"
 				+ student.getPassword());
 		if (result.hasErrors()) {
 			List<ObjectError> listErrors = result.getAllErrors();
@@ -135,7 +134,11 @@ public class LoginController {
 		System.out.println("error/errorPermission/.....");
 		return "error/404";
 	}
-
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public Object index() {
+		System.out.println("index/.....");
+		return "index";
+	}
 	/*
 	 * 测试com.github.pagehelper.PageHelper的使用
 	 */
