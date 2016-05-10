@@ -7,6 +7,11 @@
 <title>Welcome</title>
 </head>
 <body>
-<h2>首页设置成功！</h2>
+<h2>首页设置成功！From HBuilder</h2>
+<h2>Hello！HBuilder,From Eclipse</h2>
+<form >
+<textarea ></textarea>
+</form>
+
 </body>
 </html>
