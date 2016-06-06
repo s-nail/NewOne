@@ -54,7 +54,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
 	}
 
 	private boolean isExcludePath(String path) {
-		if (this.excludePaths.contains(path)) {
+		if (this.excludePaths.contains(path)) {			
 			return true;
 		}
 		return false;

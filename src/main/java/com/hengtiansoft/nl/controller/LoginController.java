@@ -44,7 +44,12 @@ public class LoginController {
 	 */
 	public MobileReturn<Head> login(HttpServletRequest request,
 			@RequestBody @Validated Student student, BindingResult result) {
-	
+		/*
+		 * String name = request.getParameter("name"); String pwd =
+		 * request.getParameter("password");
+		 * 
+		 * System.out.println("name::"+name+"pwd::"+pwd);
+		 */
 
 		//name和password为空验证
 		System.out.println("验证====name:" + student.getName() + "  password:"
@@ -103,7 +108,7 @@ public class LoginController {
 		return new MobileReturn<Head>(head);
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	@RequestMapping(value = "/logouts", method = RequestMethod.POST)
 	@ResponseBody
 	public MobileReturn<Head> logOut(HttpServletRequest request) {
 		Head head = new Head();

@@ -10,20 +10,20 @@
 	src="${pageContext.request.contextPath}/static/lib/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#btn").click(function() {
-			var name = $("#name").val();		
-			var password = $("#password").val();			
+		$("#btnUseless").click(function() {
+			var name = $("#username").val();		
+			var password = $("#pwd").val();			
 
 			if (name != "" && password != "") {
 				var url = "${pageContext.request.contextPath}/web/login";
 				var args = {
 					"name" : name,
-					"password" : password					
+					"password" : password
 				};
 
 				$.post(url, args, function(data) {
 					
-					if (data.result!=null) {
+					if (data.result==1) {
 						
 					window.location.href="${pageContext.request.contextPath}/web/test";
 
@@ -39,7 +39,35 @@
 
 		});
 		//	return true;
+		$("#btn").click(function() {
+			//alert("haha");
+			var name = $("#username").val();		
+			var password = $("#pwd").val();	
+			var studentData={
+					"name" : name,
+					"password" : password
+			}
+			$.ajax({
+				type : "POST",
+				url : "${pageContext.request.contextPath}/web/login",
+				dataType : "json",
+				contentType:"application/json", 
+			    data:JSON.stringify(studentData),
+				success : function(data) {
+					if (data.result!=null) {
+						
+						window.location.href="${pageContext.request.contextPath}/web/test";
 
+						} else {
+							alert("账号密码不存在，请重新登录！");
+							return false;
+						}
+				},
+				error : function(data) {
+					alert(data.msg);
+				}
+			});
+		});		
 	});
 </script>
 </head>
@@ -47,8 +75,8 @@
 	<div
 		style="width: auto; height: 500px; text-align: center; padding-top: 200px;">
 		<form action="" method="post">
-			用户名：<input id="name" type="text" name="name"><br>
-			<br> 密码：<input id="password" type="password" name="password"><br>
+			NI用户名：<input id="username" type="text" name="username"><br>
+			<br> 密码：<input id="pwd" type="password" name="pwd"><br>
 			<br> <input id="btn" type="button" value="登录"> <input
 				type="reset" value="重置">
 		</form>
